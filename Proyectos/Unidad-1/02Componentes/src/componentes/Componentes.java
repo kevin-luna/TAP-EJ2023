@@ -5,6 +5,7 @@
 package componentes;
 
 import javax.swing.JFrame;
+import util.Ambiente;
 
 /**
  *
@@ -17,6 +18,7 @@ public class Componentes {
    */
   public static void main(String[] args) {
     // TODO code application logic here
+    Ambiente.setAmbiente("Windows");
     JFrame f = new JFrame("Componentes graficos");
     PanelComponentes panel = new PanelComponentes();
     f.setLocation(100, 100);
