@@ -20,7 +20,9 @@ public class Paneles {
         // TODO code application logic here
         JFrame f = new JFrame("Ventana con paneles");
         BarraConImagenes barra = new BarraConImagenes();
+        PanelMezclado panel = new PanelMezclado();
         f.setJMenuBar(barra);
+        f.setContentPane(panel);
         f.setSize(800,600);
         f.setLocation(100,100);
         f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
