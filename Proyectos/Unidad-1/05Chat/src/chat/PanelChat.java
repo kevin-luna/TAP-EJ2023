@@ -29,6 +29,11 @@ public class PanelChat extends javax.swing.JPanel {
     panelNorte = new javax.swing.JPanel();
     etiquetaChat = new javax.swing.JLabel();
     campoChat = new javax.swing.JTextField();
+    panelCentro = new javax.swing.JScrollPane();
+    areaChat = new javax.swing.JTextArea();
+    panelSur = new javax.swing.JPanel();
+    botonAceptar = new javax.swing.JButton();
+    botonCancelar = new javax.swing.JButton();
 
     setLayout(new java.awt.BorderLayout());
 
@@ -40,12 +45,35 @@ public class PanelChat extends javax.swing.JPanel {
     panelNorte.add(campoChat);
 
     add(panelNorte, java.awt.BorderLayout.PAGE_START);
+
+    panelCentro.setBorder(new javax.swing.border.LineBorder(getBackground(), 20, true));
+    panelCentro.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_ALWAYS);
+    panelCentro.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+
+    areaChat.setColumns(20);
+    areaChat.setRows(5);
+    panelCentro.setViewportView(areaChat);
+
+    add(panelCentro, java.awt.BorderLayout.CENTER);
+
+    botonAceptar.setText("Aceptar");
+    panelSur.add(botonAceptar);
+
+    botonCancelar.setText("Cancelar");
+    panelSur.add(botonCancelar);
+
+    add(panelSur, java.awt.BorderLayout.PAGE_END);
   }// </editor-fold>//GEN-END:initComponents
 
 
   // Variables declaration - do not modify//GEN-BEGIN:variables
+  private javax.swing.JTextArea areaChat;
+  private javax.swing.JButton botonAceptar;
+  private javax.swing.JButton botonCancelar;
   private javax.swing.JTextField campoChat;
   private javax.swing.JLabel etiquetaChat;
+  private javax.swing.JScrollPane panelCentro;
   private javax.swing.JPanel panelNorte;
+  private javax.swing.JPanel panelSur;
   // End of variables declaration//GEN-END:variables
 }
