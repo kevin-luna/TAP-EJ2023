@@ -48,9 +48,23 @@ public class BarraConImagenes extends JMenuBar {
     String imagen = "/imagenes/copy-icon.jpeg";
     ImageIcon icono = new ImageIcon(this.getClass().getResource(imagen));
     copiar.setIcon(icono);
-    
     menuEdicion.add(copiar);
-
+    
+    JMenuItem cortar = new JMenuItem("Cortar");
+    tecla = KeyStroke.getKeyStroke('X', InputEvent.CTRL_DOWN_MASK);
+    cortar.setAccelerator(tecla);
+    cortar.setMnemonic('X');
+    ImageIcon iconoCortar = new ImageIcon(this.getClass().getResource("/imagenes/cut-icon.jpeg"));
+    cortar.setIcon(iconoCortar);
+    menuEdicion.add(cortar);
+    
+    JMenuItem pegar = new JMenuItem("Pegar");
+    tecla = KeyStroke.getKeyStroke('P',InputEvent.CTRL_DOWN_MASK);
+    pegar.setAccelerator(tecla);
+    pegar.setMnemonic('P');
+    ImageIcon iconoPegar = new ImageIcon(this.getClass().getResource("/imagenes/paste-icon.jpeg"));
+    pegar.setIcon(iconoPegar);
+    menuEdicion.add(pegar);
 //    URL url = getClass().getResource("/imagenes/duke-unam.jpeg");
 //    ImageIcon imagen = new ImageIcon(url);
 //    copiar.setIcon(imagen);
