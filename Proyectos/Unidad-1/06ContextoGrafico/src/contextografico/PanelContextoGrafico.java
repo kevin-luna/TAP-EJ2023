@@ -16,6 +16,9 @@ public class PanelContextoGrafico extends javax.swing.JPanel {
   public PanelContextoGrafico() {
     initComponents();
     panelCentro.addTab("Lineas", new PanelPrimitivas());
+    panelCentro.addTab("Arcos", new PanelArcos());
+    panelCentro.addTab("Polígonos", new PanelPoligonos());
+    panelCentro.addTab("Letras",new PanelLetras());
   }
 
   /**
