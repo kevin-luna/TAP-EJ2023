@@ -7,6 +7,8 @@ package contextografico;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
+import java.awt.Image;
+import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 
 /**
@@ -30,10 +32,10 @@ public class PanelLetras extends JPanel {
     System.out.println(g.getFont().getFontName());
     System.out.println(g.getFont().getSize());
 
-    Font f1 = new Font("Times New Roman", Font.BOLD, 24);
+    Font f1 = new Font("JetBrains Mono", Font.BOLD, 24);
     g.setFont(f1);
     g.setColor(Color.RED);
-    g.drawString("Mensaje en Times New Roman", 20, 450);
+    g.drawString("Mensaje en JetBrains Mono", 20, 450);
     System.out.println(g.getFont().getSize());
     System.out.println(g.getFont().getFontName());
 
@@ -42,5 +44,6 @@ public class PanelLetras extends JPanel {
     g.setColor(Color.MAGENTA);
     g.drawString("Mensaje en Courier", 400, 450);
     System.out.println(g.getFont().getSize());
+
   }
 }
