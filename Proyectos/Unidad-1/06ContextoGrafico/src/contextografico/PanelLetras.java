@@ -45,5 +45,25 @@ public class PanelLetras extends JPanel {
     g.drawString("Mensaje en Courier", 400, 450);
     System.out.println(g.getFont().getSize());
 
+    String nombre = "/imagenes/duke-abbey.jpeg";
+    ImageIcon img = new ImageIcon(getClass().getResource(nombre));
+    Image imagen = img.getImage();
+    
+    //Inserta la imagen en la esquina superior izquierda
+    //g.drawImage(imagen, 0, 0, this);
+
+    int anchoPanel = this.getWidth();
+    int altoPanel = this.getHeight();
+    int anchoImagen = imagen.getWidth(this);
+    int altoImagen = imagen.getHeight(this);
+    int xC = anchoPanel / 2;
+    int yC = altoPanel / 2;
+    int x = xC - anchoImagen / 2;
+    int y = yC - altoImagen / 2;
+    //Centra la imagen con respecto al panel
+    g.drawImage(imagen, x, y, this);
+    
+    //Ajusta la imagen a las dimensiones del panel
+    //g.drawImage(imagen, 0, 0, anchoPanel, altoPanel, this);
   }
 }
