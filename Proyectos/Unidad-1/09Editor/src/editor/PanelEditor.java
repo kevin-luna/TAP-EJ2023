@@ -4,8 +4,12 @@
  */
 package editor;
 
+import java.io.File;
+import java.net.URISyntaxException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import util.Archivo;
 
 /**
@@ -23,14 +27,18 @@ public class PanelEditor extends javax.swing.JPanel {
   }
   
   public void abrirArchivo(){
-    //Abrir el archivo de texto y cargarlo al objeto areaEditor
-    String archivo = "/archivos/HimnoITV.txt";
-    URL url = this.getClass().getResource(archivo);
-    System.out.println(url.getPath());
-    ArrayList<String> contenido = Archivo.leerArchivo(url.getPath());
-    for(int i=0;i<contenido.size();i++){
-      System.out.println(contenido.get(i));
-    }
+      //Abrir el archivo de texto y cargarlo al objeto areaEditor
+      String nombreArchivo = "/archivos/HimnoITV 1.txt";
+      //URL url = this.getClass().getResource(archivo);
+      //sFile fArchivo = new File(url.toURI());
+      //String path = url.getPath();//.replace("%20"," ");
+      //System.out.println(path);
+      ArrayList<String> contenido = Archivo.leerArchivo(getClass().getResourceAsStream(nombreArchivo));
+      for(String linea:contenido){
+        //System.out.println(contenido.get(i));
+        //String linea = contenido.get(i);
+        areaEditor.append(linea+"\n");
+      }
   }
   /**
    * This method is called from within the constructor to initialize the form.
@@ -41,26 +49,26 @@ public class PanelEditor extends javax.swing.JPanel {
   // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
   private void initComponents() {
 
-    jScrollPane1 = new javax.swing.JScrollPane();
-    panelCentro = new javax.swing.JTextArea();
+    panelCentro = new javax.swing.JScrollPane();
+    areaEditor = new javax.swing.JTextArea();
 
     setLayout(new java.awt.BorderLayout());
 
-    jScrollPane1.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_ALWAYS);
-    jScrollPane1.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+    panelCentro.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_ALWAYS);
+    panelCentro.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
 
-    panelCentro.setColumns(20);
-    panelCentro.setFont(new java.awt.Font("JetBrains Mono", 0, 20)); // NOI18N
-    panelCentro.setRows(5);
-    panelCentro.setBorder(javax.swing.BorderFactory.createLineBorder(getBackground(), 20));
-    jScrollPane1.setViewportView(panelCentro);
+    areaEditor.setColumns(20);
+    areaEditor.setFont(new java.awt.Font("JetBrains Mono", 0, 20)); // NOI18N
+    areaEditor.setRows(5);
+    areaEditor.setBorder(javax.swing.BorderFactory.createLineBorder(getBackground(), 20));
+    panelCentro.setViewportView(areaEditor);
 
-    add(jScrollPane1, java.awt.BorderLayout.CENTER);
+    add(panelCentro, java.awt.BorderLayout.CENTER);
   }// </editor-fold>//GEN-END:initComponents
 
 
   // Variables declaration - do not modify//GEN-BEGIN:variables
-  private javax.swing.JScrollPane jScrollPane1;
-  private javax.swing.JTextArea panelCentro;
+  private javax.swing.JTextArea areaEditor;
+  private javax.swing.JScrollPane panelCentro;
   // End of variables declaration//GEN-END:variables
 }
