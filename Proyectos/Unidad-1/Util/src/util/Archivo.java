@@ -6,8 +6,6 @@ package util;
 
 import java.io.*;
 import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
@@ -16,14 +14,18 @@ import java.util.logging.Logger;
 public class Archivo {
 
   public static ArrayList<String> leerArchivo(String nombre) {
+    return leerArchivo(new File(nombre));
+  }
+
+  public static ArrayList<String> leerArchivo(InputStream nombre) {
     ArrayList<String> lineas = new ArrayList();
     try {
-      FileReader flujo = new FileReader(nombre);
+      InputStreamReader flujo = new InputStreamReader(nombre);
       BufferedReader buffer = new BufferedReader(flujo);
       String linea = buffer.readLine();
-      while(linea!=null){
+      while (linea != null) {
         lineas.add(linea);
-        linea=buffer.readLine();
+        linea = buffer.readLine();
       }
       buffer.close();
       flujo.close();
@@ -34,18 +36,28 @@ public class Archivo {
     return lineas;
   }
 
+  public static ArrayList<String> leerArchivo(File nombre) {
+    try {
+      return leerArchivo(new FileInputStream(nombre));
+    } catch (FileNotFoundException ex) {
+      System.out.println("Error de archivo " + ex);
+      System.exit(-1);
+    }
+    return null;
+  }
+
   public static void grabarArchivo(String nombre, ArrayList<String> lineas) {
     try {
       FileWriter flujo = new FileWriter(nombre);
       BufferedWriter buffer = new BufferedWriter(flujo);
-      for(String linea: lineas){
+      for (String linea : lineas) {
         buffer.write(linea);
         buffer.newLine();
       }
       buffer.close();
       flujo.close();
     } catch (IOException ex) {
-      System.out.println("Error de archivo "+ex);
+      System.out.println("Error de archivo " + ex);
       System.exit(-1);
     }
   }
