@@ -21,5 +21,8 @@ public class PanelHerencia extends JTabbedPane{
         setBackground(Color.LIGHT_GRAY);
         setBorder(BorderFactory.createLineBorder(getBackground(),20));
         setOpaque(true);
+        addTab("Panel padre",new PanelPadre());
+        addTab("Panel hijo",new PanelHijo());
+        addTab("Panel nieto",new PanelNieto());
     }
 }
