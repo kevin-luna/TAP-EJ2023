@@ -18,7 +18,7 @@ public class PanelDibujo extends JPanel{
   
   public PanelDibujo(){
     setBackground(Color.CYAN);
-    lados=3;
+    //lados=3;
   }
   
   @Override
