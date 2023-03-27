@@ -4,7 +4,11 @@
  */
 package menuconeventos;
 
+import java.util.ArrayList;
+import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
+import javax.swing.filechooser.FileNameExtensionFilter;
+import util.Archivo;
 
 /**
  *
@@ -28,7 +32,7 @@ public class VentanaConEventos extends javax.swing.JFrame {
   // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
   private void initComponents() {
 
-    panelDibujo1 = new poligonoconeventos.PanelDibujo();
+    panelCentro = new poligonoconeventos.PanelDibujo();
     barraMenu = new javax.swing.JMenuBar();
     menuArchivo = new javax.swing.JMenu();
     opcionAbrir = new javax.swing.JMenuItem();
@@ -45,22 +49,27 @@ public class VentanaConEventos extends javax.swing.JFrame {
       }
     });
 
-    javax.swing.GroupLayout panelDibujo1Layout = new javax.swing.GroupLayout(panelDibujo1);
-    panelDibujo1.setLayout(panelDibujo1Layout);
-    panelDibujo1Layout.setHorizontalGroup(
-      panelDibujo1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+    javax.swing.GroupLayout panelCentroLayout = new javax.swing.GroupLayout(panelCentro);
+    panelCentro.setLayout(panelCentroLayout);
+    panelCentroLayout.setHorizontalGroup(
+      panelCentroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
       .addGap(0, 400, Short.MAX_VALUE)
     );
-    panelDibujo1Layout.setVerticalGroup(
-      panelDibujo1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+    panelCentroLayout.setVerticalGroup(
+      panelCentroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
       .addGap(0, 276, Short.MAX_VALUE)
     );
 
-    getContentPane().add(panelDibujo1, java.awt.BorderLayout.CENTER);
+    getContentPane().add(panelCentro, java.awt.BorderLayout.CENTER);
 
     menuArchivo.setText("Archivo");
 
     opcionAbrir.setText("Abrir");
+    opcionAbrir.addActionListener(new java.awt.event.ActionListener() {
+      public void actionPerformed(java.awt.event.ActionEvent evt) {
+        abrirArchivo(evt);
+      }
+    });
     menuArchivo.add(opcionAbrir);
     menuArchivo.add(separador);
 
@@ -77,6 +86,11 @@ public class VentanaConEventos extends javax.swing.JFrame {
     menuAyuda.setText("Ayuda");
 
     opcionAcercaDe.setText("Acerca de");
+    opcionAcercaDe.addActionListener(new java.awt.event.ActionListener() {
+      public void actionPerformed(java.awt.event.ActionEvent evt) {
+        opcionAcercaDeActionPerformed(evt);
+      }
+    });
     menuAyuda.add(opcionAcercaDe);
 
     barraMenu.add(menuAyuda);
@@ -96,6 +110,29 @@ public class VentanaConEventos extends javax.swing.JFrame {
     salirDelPrograma();
   }//GEN-LAST:event_opcionSalirActionPerformed
 
+  private void abrirArchivo(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_abrirArchivo
+    // TODO add your handling code here:
+    JFileChooser selector = new JFileChooser();
+    FileNameExtensionFilter filtro = new FileNameExtensionFilter("Archivo de polígonos","lados");
+    selector.setFileFilter(filtro);
+    int opcion = selector.showOpenDialog(this);
+    if(opcion==JFileChooser.APPROVE_OPTION){
+      ArrayList<String> lineas = Archivo.leerArchivo(selector.getSelectedFile());
+      panelCentro.setLados(Integer.parseInt(lineas.get(0)));
+    }
+    this.repaint();
+  }//GEN-LAST:event_abrirArchivo
+
+  private void opcionAcercaDeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_opcionAcercaDeActionPerformed
+    // TODO add your handling code here:
+    DialogoAcercaDe dialogo = new DialogoAcercaDe(this,true);
+    dialogo.setSize(400,500);
+    int dX = this.getX()+getWidth()/2-dialogo.getWidth()/2;
+    int dY = this.getY()+100;
+    dialogo.setLocation(dX,dY);
+    dialogo.setVisible(true);
+  }//GEN-LAST:event_opcionAcercaDeActionPerformed
+
   // Variables declaration - do not modify//GEN-BEGIN:variables
   private javax.swing.JMenuBar barraMenu;
   private javax.swing.JMenu menuArchivo;
@@ -103,7 +140,7 @@ public class VentanaConEventos extends javax.swing.JFrame {
   private javax.swing.JMenuItem opcionAbrir;
   private javax.swing.JMenuItem opcionAcercaDe;
   private javax.swing.JMenuItem opcionSalir;
-  private poligonoconeventos.PanelDibujo panelDibujo1;
+  private poligonoconeventos.PanelDibujo panelCentro;
   private javax.swing.JPopupMenu.Separator separador;
   // End of variables declaration//GEN-END:variables
 
