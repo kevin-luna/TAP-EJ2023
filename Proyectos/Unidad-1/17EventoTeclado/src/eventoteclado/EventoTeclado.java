@@ -7,8 +7,8 @@ package eventoteclado;
 
 import java.awt.Color;
 import javax.swing.JFrame;
+import modelos.Circulo;
 import modelos.Figura;
-import modelos.Triangulo;
 import vistas.PanelDibujable;
 
 /**
@@ -22,7 +22,7 @@ public class EventoTeclado {
      */
     public static void main(String[] args) {
         // TODO code application logic here
-        Figura circulo = new Triangulo(300,350,50,Color.BLUE);
+        Figura circulo = new Circulo(300,350,50,Color.BLUE);
         PanelDibujable panel = new PanelDibujable(circulo);
         OyenteTeclado oyente = new OyenteTeclado(circulo,panel);
         panel.addEventos(oyente);
