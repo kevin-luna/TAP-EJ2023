@@ -16,6 +16,9 @@ import vistas.PanelDibujable;
 public class OyenteRaton extends MouseAdapter {
   private Circulo modelo;
   private PanelDibujable vista;
+  private boolean seleccionado;
+  private int deltaX;
+  private int deltaY;
   
   public OyenteRaton(Circulo modelo,PanelDibujable vista){
     this.modelo = modelo;
@@ -30,15 +33,25 @@ public class OyenteRaton extends MouseAdapter {
   
   @Override
   public void mousePressed(MouseEvent e){
-    
+    if(modelo.contiene(e.getX(),e.getY())){
+      //System.out.println("Seleccionó el círculo");
+      seleccionado=true;
+      deltaX = modelo.x-e.getX();
+      deltaY = modelo.y-e.getY();
+    }
   }
   
   @Override
   public void mouseDragged(MouseEvent e){
-    
+    if(seleccionado){
+      //System.out.println("Muevo el circulo");
+      modelo.x=e.getX()+deltaX;
+      modelo.y=e.getY()+deltaY;
+      vista.repaint();
+    }
   }
-  
+  @Override
   public void mouseReleased(MouseEvent e){
-    
+    seleccionado=false;
   }
 }
