@@ -29,7 +29,7 @@ public class Circulo extends Figura{
   }
   
   public boolean contiene(Point p){
-    return contiene(p.x,p.y);
+    return contiene((int)p.x,(int)p.y);
   }
    
    @Override
