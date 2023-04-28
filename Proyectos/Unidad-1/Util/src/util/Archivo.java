@@ -45,8 +45,12 @@ public class Archivo {
     }
     return null;
   }
+  
+  public static void grabarArchivo(String nombre,ArrayList<String> lineas){
+    grabarArchivo(new File(nombre),lineas);
+  }
 
-  public static void grabarArchivo(String nombre, ArrayList<String> lineas) {
+  public static void grabarArchivo(File nombre, ArrayList<String> lineas) {
     try {
       FileWriter flujo = new FileWriter(nombre);
       BufferedWriter buffer = new BufferedWriter(flujo);
