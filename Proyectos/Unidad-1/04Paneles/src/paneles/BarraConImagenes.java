@@ -28,32 +28,41 @@ public class BarraConImagenes extends JMenuBar {
     JMenu menuEdicion = new JMenu("Editar");
     menuEdicion.setMnemonic('D');
     add(menuEdicion);
+    
+    //Objetos reusables
+    KeyStroke tecla;
+    ImageIcon icono;
 
     JMenuItem abrir = new JMenuItem("Abrir");
-    KeyStroke tecla = KeyStroke.getKeyStroke('A', InputEvent.CTRL_DOWN_MASK | InputEvent.SHIFT_DOWN_MASK);
+    tecla = KeyStroke.getKeyStroke('A', InputEvent.CTRL_DOWN_MASK | InputEvent.SHIFT_DOWN_MASK);
     abrir.setAccelerator(tecla);
-    ImageIcon iconoAbrir = new ImageIcon(this.getClass().getResource("/imagenes/abrir.png"));
-    abrir.setIcon(iconoAbrir);
+    icono = new ImageIcon(this.getClass().getResource("/imagenes/abrir.png"));
+    abrir.setIcon(icono);
     menuArchivo.add(abrir);
     
     JMenuItem guardar = new JMenuItem("Guardar");
+    tecla = KeyStroke.getKeyStroke('G',InputEvent.CTRL_DOWN_MASK);
+    guardar.setAccelerator(tecla);
     guardar.setMnemonic('G');
-    ImageIcon iconoGuardar = new ImageIcon(this.getClass().getResource("/imagenes/guardar.png"));
-    guardar.setIcon(iconoGuardar);
+    icono = new ImageIcon(this.getClass().getResource("/imagenes/guardar.png"));
+    guardar.setIcon(icono);
     menuArchivo.add(guardar);
     
     menuArchivo.addSeparator();
+    
     JMenuItem salir = new JMenuItem("Salir");
-    ImageIcon iconoSalir = new ImageIcon(this.getClass().getResource("/imagenes/salir.png"));
-    salir.setIcon(iconoSalir);
+    tecla = KeyStroke.getKeyStroke('S', InputEvent.CTRL_DOWN_MASK);
+    salir.setAccelerator(tecla);
+    salir.setMnemonic('S');
+    icono = new ImageIcon(this.getClass().getResource("/imagenes/salir.png"));
+    salir.setIcon(icono);
     menuArchivo.add(salir);
 
     JMenuItem copiar = new JMenuItem("Copiar");
     tecla = KeyStroke.getKeyStroke('C', InputEvent.CTRL_DOWN_MASK);
     copiar.setAccelerator(tecla);
     copiar.setMnemonic('C');
-    String imagen = "/imagenes/copiar.png";
-    ImageIcon icono = new ImageIcon(this.getClass().getResource(imagen));
+    icono = new ImageIcon(this.getClass().getResource("/imagenes/copiar.png"));
     copiar.setIcon(icono);
     menuEdicion.add(copiar);
     
@@ -61,21 +70,20 @@ public class BarraConImagenes extends JMenuBar {
     tecla = KeyStroke.getKeyStroke('X', InputEvent.CTRL_DOWN_MASK);
     cortar.setAccelerator(tecla);
     cortar.setMnemonic('X');
-    ImageIcon iconoCortar = new ImageIcon(this.getClass().getResource("/imagenes/cortar.png"));
-    cortar.setIcon(iconoCortar);
+    icono = new ImageIcon(this.getClass().getResource("/imagenes/cortar.png"));
+    cortar.setIcon(icono);
     menuEdicion.add(cortar);
     
     JMenuItem pegar = new JMenuItem("Pegar");
     tecla = KeyStroke.getKeyStroke('P',InputEvent.CTRL_DOWN_MASK);
     pegar.setAccelerator(tecla);
     pegar.setMnemonic('P');
-    ImageIcon iconoPegar = new ImageIcon(this.getClass().getResource("/imagenes/pegar.png"));
-    pegar.setIcon(iconoPegar);
+    icono = new ImageIcon(this.getClass().getResource("/imagenes/pegar.png"));
+    pegar.setIcon(icono);
     menuEdicion.add(pegar);
+    
 //    URL url = getClass().getResource("/imagenes/duke-unam.jpeg");
 //    ImageIcon imagen = new ImageIcon(url);
 //    copiar.setIcon(imagen);
-
-
   }
 }
