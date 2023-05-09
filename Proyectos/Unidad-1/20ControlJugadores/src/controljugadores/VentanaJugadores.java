@@ -4,6 +4,9 @@
  */
 package controljugadores;
 
+import java.awt.event.ActionListener;
+import modelos.Jugadores;
+
 /**
  *
  * @author Kevin Alejandro Gutierrez Luna
@@ -13,8 +16,42 @@ public class VentanaJugadores extends javax.swing.JFrame {
   /**
    * Creates new form VentanaJugadores
    */
+  
+  private Jugadores jugadores; // Modelo de datos
+  
   public VentanaJugadores() {
     initComponents();
+  }
+
+  public VentanaJugadores(Jugadores jugadores) {
+    this.jugadores = jugadores;
+    initComponents();
+    actualizarEtiquetas();
+  }
+  
+  public void actualizarEtiquetas(){
+    String archivo = jugadores.getNombreArchivo();
+      archivo=archivo==null?"":archivo;
+      this.etiquetaArchivo.setText("<html><b>Archivo: </b></html> "+archivo);
+      this.etiquetaTotal.setText("<html><b>Total:</b></html> "+jugadores.getTotalJugadores());
+      this.etiquetaJugar.setText("<html><b>Jugando:</b></html> "+jugadores.getTotalJugando());
+  }
+  
+  public void addEventos(ActionListener oyente){
+    this.opcionAbrir.addActionListener(oyente);
+    this.opcionGuardar.addActionListener(oyente);
+    this.opcionSalir.addActionListener(oyente);
+    this.opcionRegistrar.addActionListener(oyente);
+    this.opcionEditar.addActionListener(oyente);
+    this.opcionEliminar.addActionListener(oyente);
+    this.opcionInicializar.addActionListener(oyente);
+    this.opcionAbrir.setName("abrir");
+    this.opcionGuardar.setName("guardar");
+    this.opcionSalir.setName("salir");
+    this.opcionRegistrar.setName("registrar");
+    this.opcionEditar.setName("editar");
+    this.opcionEliminar.setName("eliminar");
+    this.opcionInicializar.setName("inicializar");
   }
 
   /**
@@ -41,7 +78,7 @@ public class VentanaJugadores extends javax.swing.JFrame {
     opcionSalir = new javax.swing.JMenuItem();
     menuOperaciones = new javax.swing.JMenu();
     opcionRegistrar = new javax.swing.JMenuItem();
-    opcionModificar = new javax.swing.JMenuItem();
+    opcionEditar = new javax.swing.JMenuItem();
     opcionEliminar = new javax.swing.JMenuItem();
     separadorOperaciones = new javax.swing.JPopupMenu.Separator();
     opcionInicializar = new javax.swing.JMenuItem();
@@ -125,8 +162,8 @@ public class VentanaJugadores extends javax.swing.JFrame {
     opcionRegistrar.setText("Registrar jugador");
     menuOperaciones.add(opcionRegistrar);
 
-    opcionModificar.setText("Modificar jugador");
-    menuOperaciones.add(opcionModificar);
+    opcionEditar.setText("Modificar jugador");
+    menuOperaciones.add(opcionEditar);
 
     opcionEliminar.setText("Eliminar jugador");
     menuOperaciones.add(opcionEliminar);
@@ -151,10 +188,10 @@ public class VentanaJugadores extends javax.swing.JFrame {
   private javax.swing.JMenu menuArchivo;
   private javax.swing.JMenu menuOperaciones;
   private javax.swing.JMenuItem opcionAbrir;
+  private javax.swing.JMenuItem opcionEditar;
   private javax.swing.JMenuItem opcionEliminar;
   private javax.swing.JMenuItem opcionGuardar;
   private javax.swing.JMenuItem opcionInicializar;
-  private javax.swing.JMenuItem opcionModificar;
   private javax.swing.JMenuItem opcionRegistrar;
   private javax.swing.JMenuItem opcionSalir;
   private javax.swing.JScrollPane panelCentro;

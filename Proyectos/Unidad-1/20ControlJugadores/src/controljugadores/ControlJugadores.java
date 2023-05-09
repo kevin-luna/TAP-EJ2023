@@ -5,6 +5,8 @@
 
 package controljugadores;
 
+import modelos.Jugadores;
+
 /**
  *
  * @author Kevin Alejandro Gutierrez Luna
@@ -16,7 +18,10 @@ public class ControlJugadores {
      */
     public static void main(String[] args) {
         // TODO code application logic here
-        VentanaJugadores f = new VentanaJugadores();
+        Jugadores modelo = new Jugadores();
+        VentanaJugadores f = new VentanaJugadores(modelo);
+        OyenteJugadores oyente = new OyenteJugadores(modelo,f);
+        f.addEventos(oyente);
         f.setSize(800,600);
         f.setLocation(100,100);
         f.setVisible(true);
