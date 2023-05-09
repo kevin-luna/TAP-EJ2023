@@ -5,6 +5,8 @@
 package controljugadores;
 
 import java.awt.event.ActionListener;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
 import modelos.Jugadores;
 
 /**
@@ -32,12 +34,12 @@ public class VentanaJugadores extends javax.swing.JFrame {
   public void actualizarEtiquetas(){
     String archivo = jugadores.getNombreArchivo();
       archivo=archivo==null?"":archivo;
-      this.etiquetaArchivo.setText("<html><b>Archivo: </b></html> "+archivo);
-      this.etiquetaTotal.setText("<html><b>Total:</b></html> "+jugadores.getTotalJugadores());
-      this.etiquetaJugar.setText("<html><b>Jugando:</b></html> "+jugadores.getTotalJugando());
+      this.etiquetaArchivo.setText("<html><b>Archivo: </b>"+archivo+"</html>");
+      this.etiquetaTotal.setText("<html><b>Total:</b>"+jugadores.getTotalJugadores()+"</html>");
+      this.etiquetaJugar.setText("<html><b>Jugando:</b>"+jugadores.getTotalJugando()+"</html>");
   }
   
-  public void addEventos(ActionListener oyente){
+  public void addEventos(OyenteJugadores oyente){
     this.opcionAbrir.addActionListener(oyente);
     this.opcionGuardar.addActionListener(oyente);
     this.opcionSalir.addActionListener(oyente);
@@ -45,6 +47,7 @@ public class VentanaJugadores extends javax.swing.JFrame {
     this.opcionEditar.addActionListener(oyente);
     this.opcionEliminar.addActionListener(oyente);
     this.opcionInicializar.addActionListener(oyente);
+    this.addWindowListener(oyente);
     this.opcionAbrir.setName("abrir");
     this.opcionGuardar.setName("guardar");
     this.opcionSalir.setName("salir");
@@ -52,6 +55,14 @@ public class VentanaJugadores extends javax.swing.JFrame {
     this.opcionEditar.setName("editar");
     this.opcionEliminar.setName("eliminar");
     this.opcionInicializar.setName("inicializar");
+  }
+  
+  public JTable getTabla(){
+    return tabla;
+  }
+  
+  public DefaultTableModel getDatosTabla(){
+    return (DefaultTableModel)tabla.getModel();
   }
 
   /**
