@@ -5,6 +5,7 @@
 package controljugadores;
 
 import javax.swing.JButton;
+import javax.swing.JFrame;
 
 /**
  *
@@ -24,6 +25,31 @@ public class DialogoRegistroJugador extends javax.swing.JDialog {
 
   public JButton getBotonAceptar(){
     return this.botonAceptar;
+  }
+  
+  public void addEventos(OyenteJugadores oyente){
+    botonAceptar.addActionListener(oyente);
+    botonCancelar.addActionListener(oyente);
+    addWindowListener(oyente);
+    botonAceptar.setName("aceptar");
+    botonCancelar.setName("cancelar");
+    setName("dialogo");
+  }
+  
+  public void show(String titulo,String textoBoton,boolean estadoNombre,boolean estadoCombos){
+    setTitle(titulo);
+    botonAceptar.setText(textoBoton);
+    campoNombre.setEnabled(estadoNombre);
+    comboPronostico.setEnabled(estadoCombos);
+    comboTemperatura.setEnabled(estadoCombos);
+    comboHumedad.setEnabled(estadoCombos);
+    comboViento.setEnabled(estadoCombos);
+    comboJugar.setEnabled(estadoCombos);
+    JFrame padre = (JFrame)getParent();
+    int x = padre.getX()+padre.getWidth()/2-getWidth()/2;
+    int y = padre.getY()+padre.getHeight()/2-getHeight()/2;
+    setLocation(x,y);
+    setVisible(true);
   }
   
   public void setComponentes(String[] valores){
@@ -81,7 +107,7 @@ public class DialogoRegistroJugador extends javax.swing.JDialog {
     etiquetaNombre.setText("Nombre del jugador:");
     panelNorte.add(etiquetaNombre);
 
-    campoNombre.setColumns(25);
+    campoNombre.setColumns(15);
     panelNorte.add(campoNombre);
 
     getContentPane().add(panelNorte, java.awt.BorderLayout.NORTH);

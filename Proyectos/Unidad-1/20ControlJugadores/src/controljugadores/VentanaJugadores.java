@@ -55,6 +55,7 @@ public class VentanaJugadores extends javax.swing.JFrame {
     this.opcionEditar.setName("editar");
     this.opcionEliminar.setName("eliminar");
     this.opcionInicializar.setName("inicializar");
+    this.setName("ventana");
   }
   
   public JTable getTabla(){
