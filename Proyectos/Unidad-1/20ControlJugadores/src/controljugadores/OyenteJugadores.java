@@ -48,7 +48,7 @@ public class OyenteJugadores extends WindowAdapter implements ActionListener {
         salirPrograma();
         break;
       }
-      case "dialogo":{
+      case "dialogo": {
         dialogo.setVisible(false);
         break;
       }
@@ -74,27 +74,77 @@ public class OyenteJugadores extends WindowAdapter implements ActionListener {
         break;
       }
       case "registrar": {
-        dialogo.show("Registrar jugador", "Adicionar", NOMBRE_ON, COMBOS_ON);
+        registrarJugador();
         break;
       }
       case "editar": {
-        dialogo.show("Editar jugador", "Modificar", NOMBRE_OFF, COMBOS_ON);
+        editarJugador();
         break;
       }
       case "eliminar": {
-        dialogo.show("Eliminar jugador", "Eliminar", NOMBRE_OFF, COMBOS_OFF);
+        eliminarJugador();
         break;
       }
       case "inicializar": {
+        inicializarValores();
         break;
       }
       case "aceptar": {
         break;
       }
       case "cancelar": {
+        dialogo.setVisible(false);
         break;
       }
     }
+  }
+  
+  public void actualizarJugadores(){
+    
+  }
+  
+  public void inicializarValores(){
+    int seleccion = mostrarMensajeSeleccion("Eliminar jugadores","¿Desea cepillar a todos los jugadores?");
+    if(seleccion==JOptionPane.YES_OPTION){
+      jugadores.inicializarJugadores();
+      datosTabla.setRowCount(0);
+      vista.actualizarEtiquetas();
+    }
+  }
+  
+  public void editarJugador(){
+    if(validarJugador())
+        dialogo.show("Editar jugador", "Modificar", NOMBRE_OFF, COMBOS_ON);
+  }
+  
+  public void eliminarJugador(){
+    if(validarJugador())
+        dialogo.show("Eliminar jugador", "Eliminar", NOMBRE_OFF, COMBOS_OFF);
+  }
+  
+  public boolean validarJugador(){
+    int renglon = vista.getTabla().getSelectedRow();
+    if(renglon!=-1){
+      String[] valores = {
+      (String) datosTabla.getValueAt(renglon, 0),
+        (String) datosTabla.getValueAt(renglon, 1),
+        (String) datosTabla.getValueAt(renglon, 2),
+        (String) datosTabla.getValueAt(renglon, 3),
+        (String) datosTabla.getValueAt(renglon, 4),
+        (String) datosTabla.getValueAt(renglon, 5),
+      };
+      dialogo.setComponentes(valores);
+    }else{
+      mostrarMensajeError("Error de registro","Debes seleccionar un registro de la tabla!!");
+      return false;
+    }
+    return true;
+  }
+
+  public void registrarJugador() {
+    String[] valores = {"","Soleado","Calor","Baja","Si","Si"};
+    dialogo.setComponentes(valores);
+    dialogo.show("Registrar jugador", "Adicionar", NOMBRE_ON, COMBOS_ON);
   }
 
   public void salirPrograma() {
@@ -129,6 +179,10 @@ public class OyenteJugadores extends WindowAdapter implements ActionListener {
       }
       vista.actualizarEtiquetas();
     }
+  }
+
+  public void mostrarMensajeError(String titulo, String mensaje) {
+    JOptionPane.showMessageDialog(vista, mensaje, titulo, JOptionPane.OK_OPTION);
   }
 
   public int mostrarMensajeSeleccion(String titulo, String mensaje) {
