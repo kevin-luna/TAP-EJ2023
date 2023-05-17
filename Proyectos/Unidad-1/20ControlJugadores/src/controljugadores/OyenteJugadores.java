@@ -90,6 +90,7 @@ public class OyenteJugadores extends WindowAdapter implements ActionListener {
         break;
       }
       case "aceptar": {
+        actualizarJugador();
         break;
       }
       case "cancelar": {
@@ -99,8 +100,49 @@ public class OyenteJugadores extends WindowAdapter implements ActionListener {
     }
   }
   
-  public void actualizarJugadores(){
-    
+  public void actualizarJugador(){
+    Jugador jugador = new Jugador(dialogo.getCOmponentes());
+    String nombre = jugador.getNombre();
+    String accion = dialogo.getBotonAceptar().getText();
+    switch (accion) {
+      case "Adicionar":{
+        if(!jugadores.containsKey(nombre)){
+          jugadores.adicionarJugador(jugador);
+          datosTabla.addRow(jugador.getJugador());
+          vista.actualizarEtiquetas();
+          dialogo.setVisible(false);
+        }
+        else{
+          this.mostrarMensajeError("Error de registro", "El jugador"+nombre+" ya está registrado.");
+        }
+        break;
+      }
+      case "Modificar":{
+        if(jugadores.modificarJugador(jugador)!=null){
+          String[] valores = jugador.getJugador();
+          int renglon = vista.getTabla().getSelectedRow();
+          for(int i=0;i<valores.length; i++){
+            datosTabla.setValueAt(valores[i], renglon, i);
+          }
+          vista.actualizarEtiquetas();
+          dialogo.setVisible(false);
+        }else{
+          this.mostrarMensajeError("Error de modificación","El jugador "+nombre+" no se puede modificar!");
+        }
+        break;
+      }
+      case "Eliminar":{
+        if(jugadores.eliminarJugador(jugador)!=null){
+          int renglon = vista.getTabla().getSelectedRow();
+          datosTabla.removeRow(renglon);
+          vista.actualizarEtiquetas();
+          dialogo.setVisible(false);
+        }else{
+          this.mostrarMensajeError("Error de cepillado", "El jugador "+nombre+" no se pudo cepillar!");
+        }
+        break;
+      }
+    }
   }
   
   public void inicializarValores(){
