@@ -4,6 +4,7 @@
  */
 package hiloscontadoresgrafico;
 
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.lang.Thread.State;
@@ -29,14 +30,23 @@ public class OyenteContador implements ActionListener {
   
   @Override
   public void actionPerformed(ActionEvent e) {
-    System.out.println("Hilo 1 = "+hilo1.getState());
-    System.out.println("Hilo 2 = "+hilo2.getState());
-    System.out.println("Hilo 1 = "+hilo1.isAlive());
-    System.out.println("Hilo 2 = "+hilo2.isAlive());
-    if(hilo1.getState()!=State.TERMINATED)
-    hilo1.start();
-    if(hilo2.getState()!=State.TERMINATED)
-    hilo2.start();
+//    System.out.println("Hilo 1 = "+hilo1.getState());
+//    System.out.println("Hilo 2 = "+hilo2.getState());
+//    System.out.println("Hilo 1 = "+hilo1.isAlive());
+//    System.out.println("Hilo 2 = "+hilo2.isAlive());
+    if(!hilo1.isAlive()){
+      if(hilo1.getState()==State.TERMINATED){
+        hilo1 = new Hilo(panel.getSliders()[0]);
+      }
+      hilo1.start();
+    }
+    
+    if(!hilo2.isAlive()){
+      if(hilo2.getState()==State.TERMINATED){
+        hilo2 = new Hilo(panel.getSliders()[1]);
+      }
+      hilo2.start();
+    }
   }
   
   public class Hilo extends Thread {
@@ -59,6 +69,7 @@ public class OyenteContador implements ActionListener {
           System.out.println("Error de interrupción " + ex);
           System.exit(-1);
         }
+        Toolkit.getDefaultToolkit().sync();
       }
     }
   }
