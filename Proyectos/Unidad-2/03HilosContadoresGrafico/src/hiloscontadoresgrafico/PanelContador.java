@@ -4,6 +4,9 @@
  */
 package hiloscontadoresgrafico;
 
+import java.awt.event.ActionListener;
+import javax.swing.JSlider;
+
 /**
  *
  * @author Kevin Alejandro Gutierrez Luna
@@ -16,7 +19,14 @@ public class PanelContador extends javax.swing.JPanel {
   public PanelContador() {
     initComponents();
   }
-
+  
+  public void addEventos(ActionListener oyente){
+    this.botonIniciar.addActionListener(oyente);
+  }
+  
+  public JSlider[] getSliders(){
+    return new JSlider[]{barra1,barra2};
+  }
   /**
    * This method is called from within the constructor to initialize the form.
    * WARNING: Do NOT modify this code. The content of this method is always

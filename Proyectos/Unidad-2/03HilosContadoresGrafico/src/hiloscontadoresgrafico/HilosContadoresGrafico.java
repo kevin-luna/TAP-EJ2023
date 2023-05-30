@@ -20,6 +20,8 @@ public class HilosContadoresGrafico {
         // TODO code application logic here
         JFrame f = new JFrame("Contadores");
         PanelContador panel = new PanelContador();
+        OyenteContador oyente = new OyenteContador(panel);
+        panel.addEventos(oyente);
         f.setSize(400,600);
         f.setLocation(100,100);
         f.add(panel);
