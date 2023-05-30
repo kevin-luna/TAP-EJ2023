@@ -49,17 +49,7 @@ public class VentanaConEventos extends javax.swing.JFrame {
       }
     });
 
-    javax.swing.GroupLayout panelCentroLayout = new javax.swing.GroupLayout(panelCentro);
-    panelCentro.setLayout(panelCentroLayout);
-    panelCentroLayout.setHorizontalGroup(
-      panelCentroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-      .addGap(0, 400, Short.MAX_VALUE)
-    );
-    panelCentroLayout.setVerticalGroup(
-      panelCentroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-      .addGap(0, 276, Short.MAX_VALUE)
-    );
-
+    panelCentro.setLayout(new java.awt.BorderLayout());
     getContentPane().add(panelCentro, java.awt.BorderLayout.CENTER);
 
     menuArchivo.setText("Archivo");

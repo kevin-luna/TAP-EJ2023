@@ -18,7 +18,7 @@ public class Componentes {
    */
   public static void main(String[] args) {
     // TODO code application logic here
-    Ambiente.setAmbiente("Windows");
+    Ambiente.setAmbiente("GTK");
     JFrame f = new JFrame("Componentes graficos");
     PanelComponentes panel = new PanelComponentes();
     f.setLocation(100, 100);
